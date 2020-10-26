@@ -18,7 +18,10 @@ def uniqueShuffle(subStr):
 def rearrangeWord(word):
     if (len(word) != 1):
         subStr = word[1:len(word) - 1]
-        alterWord = word[0] + uniqueShuffle(subStr) + word[-1]
+        counter = -1
+        if(word[counter] == "," or word[counter] == "."):
+            --counter
+        alterWord = word[0] + uniqueShuffle(subStr) + word[counter]
         return alterWord
     else:
         return word
