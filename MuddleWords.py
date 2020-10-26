@@ -1,5 +1,5 @@
 import random
-
+import re
 #main functionality
 def main():
     print("hello")
@@ -19,9 +19,13 @@ def rearrangeWord(word):
     if (len(word) != 1):
         subStr = word[1:len(word) - 1]
         counter = -1
-        if(word[counter] == "," or word[counter] == "."):
-            --counter
-        alterWord = word[0] + uniqueShuffle(subStr) + word[counter]
+        endCount = len(word) - 1
+        end = ""
+        while(word[counter] == "," or word[counter] == "." or word[counter] == "!" or not re.match(r'^\w+$', word[counter])):
+            end += word[counter]
+            counter -= 1
+            endCount = counter
+        alterWord = word[0] + uniqueShuffle(subStr[1: endCount]) + word[counter] + end
         return alterWord
     else:
         return word
